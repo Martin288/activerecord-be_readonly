@@ -10,7 +10,8 @@ module BeReadonly
 
     # enable the readonly behaviour in default
     def self.enabled_readonly?
-      @enable_readonly || true
+      return @enable_readonly unless @enable_readonly == nil
+      true   # default is ture if not set :enable_readonly yet
     end
   end
 end
