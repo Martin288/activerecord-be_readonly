@@ -13,4 +13,5 @@ Gem::Specification.new do |s|
   s.files = Dir['lib/**/*'] + ['Rakefile', 'README.md']
   s.license = 'MIT'
   s.add_dependency 'activerecord'
+  s.add_dependency 'activesupport'
 end
