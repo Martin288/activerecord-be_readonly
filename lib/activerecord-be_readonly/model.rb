@@ -8,32 +8,32 @@ module BeReadonly
         include BeReadonlyInstanceMethods # intentionally not just InstanceMethods as those would be automatically included via ActiveSupport::Concern
 
         before_destroy do
-          raise ActiveRecord::ReadOnlyRecord
+          raise ActiveRecord::ReadOnlyRecord if Config.enabled_readonly?
         end
       end
     end
 
     module BeReadonlyClassMethods
       def delete(id_or_array)
-        raise ActiveRecord::ReadOnlyRecord
+        raise ActiveRecord::ReadOnlyRecord if Config.enabled_readonly?
       end
 
       def delete_all(conditions = nil)
-        raise ActiveRecord::ReadOnlyRecord
+        raise ActiveRecord::ReadOnlyRecord if Config.enabled_readonly?
       end
 
       def update_all(conditions = nil)
-        raise ActiveRecord::ReadOnlyRecord
+        raise ActiveRecord::ReadOnlyRecord if Config.enabled_readonly?
       end
     end
 
     module BeReadonlyInstanceMethods
       def readonly?
-        return true
+        return Config.enabled_readonly?
       end
 
       def delete
-        raise ActiveRecord::ReadOnlyRecord
+        raise ActiveRecord::ReadOnlyRecord if Config.enabled_readonly?
       end
     end
   end
