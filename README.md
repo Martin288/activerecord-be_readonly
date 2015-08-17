@@ -33,6 +33,18 @@ In your model just include this, preferably somewhere noticeable like at the top
 
     be_readonly
 
+### Test Mode
+In most cases, you should expect that models declared with `be_readonly` behave really read only, but sometimes you may also want to temporarily disable the readonly behaviour, to archieve this, you can use a initializer with `BeReadonly.configure` method or use `BeReadonly::Config.enable_readonly=` in the runtime like:
+
+```ruby
+BeReadonly.configure do |config|
+  config.enable_readonly = false
+end
+
+# or...
+BeReadonly::Config.enable_readonly = false
+```
+
 ### Using without Rails
 
 Or if you are off-rails, but use ActiveRecord, just do this in the model class:
